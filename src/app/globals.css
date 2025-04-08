@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  --primary-color: #00ff9d;
+  --secondary-color: #00b8ff;
+  --accent-color: #00ff9d;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --card-bg: rgba(0, 0, 0, 0.8);
+  --hover-bg: rgba(0, 255, 157, 0.1);
+  --border-color: rgba(0, 255, 157, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+}
+
+@layer components {
+  .nav-link {
+    @apply relative text-gray-300 hover:text-white transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00ff9d] to-[#00b8ff] transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .card {
+    @apply bg-black/80 backdrop-blur-sm border border-[#00ff9d]/20 rounded-xl p-6 
+           hover:border-[#00ff9d]/40 hover:shadow-[0_0_20px_rgba(0,255,157,0.2)] 
+           transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-[#00ff9d] to-[#00b8ff] text-black font-semibold 
+           px-6 py-2 rounded-lg hover:opacity-90 transition-all duration-300 
+           hover:shadow-[0_0_20px_rgba(0,255,157,0.3)];
+  }
+
+  .btn-secondary {
+    @apply border border-[#00ff9d]/30 text-white font-semibold 
+           px-6 py-2 rounded-lg hover:bg-[#00ff9d]/10 transition-all duration-300;
+  }
+
+  .input-field {
+    @apply bg-black/50 border border-[#00ff9d]/20 rounded-lg px-4 py-2 
+           focus:border-[#00ff9d]/40 focus:outline-none focus:ring-1 focus:ring-[#00ff9d]/40 
+           transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#00ff9d] to-[#00b8ff] 
+           bg-clip-text text-transparent mb-6;
+  }
+
+  .hover-card {
+    @apply transform hover:scale-105 transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#00ff9d] to-[#00b8ff] bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    @apply border border-transparent bg-gradient-to-r from-[#00ff9d] to-[#00b8ff] 
+           bg-clip-border hover:border-opacity-50 transition-all duration-300;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #00ff9d, #00b8ff);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #00b8ff, #00ff9d);
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glass Effect */
+.glass {
+  @apply bg-black/30 backdrop-blur-md border border-white/10;
+}
+
+/* Gradient Background */
+.gradient-bg {
+  background: linear-gradient(135deg, #000000 0%, #001a0d 50%, #000033 100%);
+}
+
+/* Hover Effects */
+.hover-glow {
+  @apply hover:shadow-[0_0_20px_rgba(0,255,157,0.3)] transition-all duration-300;
+}
+
+.hover-lift {
+  @apply hover:-translate-y-1 transition-transform duration-300;
+}
+
+/* Text Effects */
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+}
+
+/* Border Effects */
+.border-glow {
+  @apply border border-[#00ff9d]/20 hover:border-[#00ff9d]/40 
+         hover:shadow-[0_0_20px_rgba(0,255,157,0.2)] transition-all duration-300;
+}

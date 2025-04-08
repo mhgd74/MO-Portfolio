@@ -1,0 +1,52 @@
+{
+  "name": "Mostafa Hamdy Portfolio",
+  "short_name": "MH Portfolio",
+  "description": "Professional graphic designer portfolio showcasing creative work in brand identity, UI/UX, and print design",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/img/Logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/Logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "portrait",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["design", "portfolio", "creative"],
+  "screenshots": [
+    {
+      "src": "/img/screenshot1.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "platform": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "url": "/projects",
+      "description": "View my latest projects"
+    },
+    {
+      "name": "Services",
+      "url": "/services",
+      "description": "Check my services"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact",
+      "description": "Get in touch"
+    }
+  ]
+} 
