@@ -1,3 +1,6 @@
+'use client';
+
+import React from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 import { FaGithub, FaBehance, FaExternalLinkAlt } from 'react-icons/fa';
@@ -17,6 +20,22 @@ interface Project {
 
 export default function Projects() {
   const webProjects = [
+    {
+      title: "VidLoader",
+      description: "تطبيق ويب لتحميل الفيديوهات من منصات مختلفة بسهولة وكفاءة. يدعم تحميل الفيديوهات بصيغ متعددة مع واجهة مستخدم بسيطة وجذابة.",
+      image: "/img/vidloader.svg",
+      demoUrl: "https://vidloader-mo.vercel.app/",
+      githubUrl: "https://github.com/mhgd74/vidloader",
+      tags: ["Node.js", "Express", "HTML5", "CSS3", "JavaScript"],
+      features: [
+        "واجهة مستخدم بسيطة وجذابة",
+        "دعم تحميل الفيديوهات بصيغ متعددة",
+        "عرض معلومات الفيديو قبل التحميل",
+        "تصميم متجاوب يعمل على جميع الأجهزة",
+        "تحميل سريع وفعال",
+        "دعم منصات فيديو متعددة"
+      ]
+    },
     {
       title: "Top Mastery",
       description: "A comprehensive website for Top Mastery, a leading company in design, printing, development, and digital marketing. Established in 2005, offering integrated creative solutions.",
@@ -57,7 +76,7 @@ export default function Projects() {
       description: "Complete brand identity design for Al-Masoud Medical Clinics, including logo design, visual identity, and various applications across print materials and social media platforms.",
       image: "/img/AlMasoud.png",
       demoUrl: "https://www.behance.net/gallery/205300087/Al-Masoud-Clinics-Project",
-      type: "design",
+      behanceUrl: "https://www.behance.net/gallery/205300087/Al-Masoud-Clinics-Project",
       tags: ["Brand Identity", "Logo Design", "Social Media", "Print Design"],
       features: [
         "Modern medical logo",
@@ -72,7 +91,7 @@ export default function Projects() {
       description: "Professional company profile design showcasing services and achievements with an attractive and distinctive approach, focusing on modern design and organized content.",
       image: "/img/CompanyProfile.png",
       demoUrl: "https://www.behance.net/gallery/203448883/Company-Profile",
-      type: "design",
+      behanceUrl: "https://www.behance.net/gallery/203448883/Company-Profile",
       tags: ["Editorial Design", "Adobe InDesign", "Brochure Design", "Corporate Identity"],
       features: [
         "Modern and elegant layout",
@@ -87,7 +106,7 @@ export default function Projects() {
       description: "Professional logo design for KHG company with a comprehensive presentation showcasing the design process and various brand identity applications.",
       image: "/img/KHG.png",
       demoUrl: "https://www.behance.net/gallery/210247615/KHG-Logo-Presentation",
-      type: "design",
+      behanceUrl: "https://www.behance.net/gallery/210247615/KHG-Logo-Presentation",
       tags: ["Adobe Illustrator", "Logo Design", "Brand Identity", "Mockup Design"],
       features: [
         "Innovative modern logo",
@@ -100,94 +119,128 @@ export default function Projects() {
   ];
 
   const renderProject = (project: Project) => (
-    <div key={project.title} className="glass-effect rounded-xl overflow-hidden group">
-      <div className="relative h-48 overflow-hidden">
+    <div key={project.title} className="bg-black dark:bg-black rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out h-full flex flex-col transform hover:scale-[1.03] hover:translate-y-[-8px] hover:shadow-2xl border border-[#00ff9d]/20">
+      <div className="relative h-52 overflow-hidden">
         <Image
           src={project.image}
           alt={project.title}
           fill
-          className="object-cover transform transition-transform duration-500 group-hover:scale-110"
+          className="object-cover transition-transform duration-700 ease-in-out hover:scale-110"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="absolute bottom-4 left-4 right-4 flex gap-2">
-            <a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-[#00ff9d]/20 text-white hover:bg-[#00ff9d]/30 transition-colors duration-300"
-              aria-label="View Demo"
-            >
-              <FaExternalLinkAlt className="w-4 h-4" />
-            </a>
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-[#00ff9d]/20 text-white hover:bg-[#00ff9d]/30 transition-colors duration-300"
-                aria-label="View on GitHub"
-              >
-                <FaGithub className="w-4 h-4" />
-              </a>
-            )}
-            {project.behanceUrl && (
-              <a
-                href={project.behanceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-[#00ff9d]/20 text-white hover:bg-[#00ff9d]/30 transition-colors duration-300"
-                aria-label="View on Behance"
-              >
-                <FaBehance className="w-4 h-4" />
-              </a>
-            )}
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-bold mb-2 gradient-text">{project.title}</h3>
-        <p className="text-gray-300 mb-4">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-3 py-1 text-sm rounded-full bg-[#00ff9d]/10 text-[#00ff9d] border border-[#00ff9d]/20"
-            >
-              {tag}
-            </span>
-          ))}
+      <div className="p-6 flex-1 flex flex-col border-t-2 border-[#00ff9d]/20">
+        <div className="flex-1">
+          <h3 className="text-xl font-bold mb-3 text-white transition-colors duration-300 hover:text-[#00ff9d] relative inline-block group">
+            {project.title}
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00ff9d] transition-all duration-300 group-hover:w-full"></span>
+          </h3>
+          <p className="text-gray-400 mb-4 line-clamp-2">{project.description}</p>
+          {project.tags && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tags.map((tag: string, tagIndex: number) => (
+                <span
+                  key={`${tag}-${tagIndex}`}
+                  className="bg-[#00ff9d]/10 text-[#00ff9d] text-xs px-2 py-1 rounded-full transition-all duration-300 hover:bg-[#00ff9d]/20 hover:scale-105"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+          {project.features && (
+            <div className="space-y-2">
+              <h4 className="font-semibold text-white">Features:</h4>
+              <ul className="list-disc list-inside text-sm text-gray-400 space-y-1">
+                {project.features.slice(0, 4).map((feature: string, featureIndex: number) => (
+                  <li key={`${feature}-${featureIndex}`} className="truncate transition-all duration-300 hover:text-[#00ff9d] hover:translate-x-1">{feature}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-        <ul className="space-y-2">
-          {project.features.map((feature) => (
-            <li key={feature} className="flex items-center text-gray-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9d] mr-2"></span>
-              {feature}
-            </li>
-          ))}
-        </ul>
+        <div className="flex gap-4 mt-6 pt-4 border-t border-gray-800">
+          <Link 
+            href={project.demoUrl} 
+            target="_blank" 
+            className="flex-1 bg-[#00ff9d] text-black text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-[#00ff9d]/80 hover:shadow-md hover:scale-[1.02]"
+          >
+            View Project
+          </Link>
+          {project.githubUrl && (
+            <Link
+              href={project.githubUrl} 
+              target="_blank" 
+              className="flex-1 bg-gray-800 text-white text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-gray-700 hover:shadow-md hover:scale-[1.02]"
+            >
+              View Code
+            </Link>
+          )}
+          {project.behanceUrl && (
+            <Link
+              href={project.behanceUrl} 
+              target="_blank" 
+              className="flex-1 bg-gray-800 text-white text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-gray-700 hover:shadow-md hover:scale-[1.02]"
+            >
+              View on Behance
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20">
-      <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-4xl font-bold mb-12 gradient-text text-center">My Projects</h1>
-        
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold mb-8 gradient-text">Web Development</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {webProjects.map(renderProject)}
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white custom-scrollbar">
+      <div className="flex-1 flex items-center justify-center h-full bg-gradient-to-br from-black to-gray-900 transition-all duration-500">
+        <div className="w-full max-w-6xl mx-auto px-2 py-4 md:py-0">
+          <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#00ff9d] to-[#00ff9d]/50 bg-clip-text text-transparent inline-block mb-6 animate-fadeIn">
+            My Projects
+            <div className="h-0.5 w-full bg-gradient-to-r from-[#00ff9d] to-[#00ff9d]/50 mt-1 transform scale-x-0 animate-expandWidth"></div>
+          </h1>
+          
+          {/* Graphic Design Projects */}
+          <div className="mb-8 animate-slideInUp">
+            <h2 className="text-lg md:text-xl font-semibold text-white mb-4 flex items-center group relative">
+              <svg className="w-5 h-5 mr-2 text-[#00ff9d] animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span className="relative">
+                Graphic Design Projects
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#00ff9d] transition-all duration-300 group-hover:w-full"></span>
+              </span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {designProjects.map((project, index) => (
+                <div key={project.title} className="transform transition-all duration-700 opacity-0 translate-y-8 animate-appear" style={{ animationDelay: `${index * 200}ms` }}>
+                  {renderProject(project)}
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold mb-8 gradient-text">Design Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {designProjects.map(renderProject)}
+          
+          {/* Web Development Projects */}
+          <div className="pb-6 animate-slideInUp" style={{ animationDelay: "200ms" }}>
+            <h2 className="text-lg md:text-xl font-semibold text-white mb-4 flex items-center group relative">
+              <svg className="w-5 h-5 mr-2 text-[#00ff9d] animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+              <span className="relative">
+                Web Development Projects
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#00ff9d] transition-all duration-300 group-hover:w-full"></span>
+              </span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {webProjects.map((project, index) => (
+                <div key={project.title} className="transform transition-all duration-700 opacity-0 translate-y-8 animate-appear" style={{ animationDelay: `${(index + designProjects.length) * 200}ms` }}>
+                  {renderProject(project)}
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }

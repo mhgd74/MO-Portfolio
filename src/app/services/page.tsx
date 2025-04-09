@@ -1,9 +1,11 @@
 import React from 'react';
+import { FaPalette, FaPrint, FaAd, FaMobileAlt, FaLaptopCode, FaMobile } from 'react-icons/fa';
+import '@/styles/animations.css';
 
 interface Service {
   title: string;
   description: string;
-  icon: string;
+  icon: React.ReactNode;
   features: string[];
 }
 
@@ -12,7 +14,7 @@ export default function Services() {
     {
       title: "Graphic Design",
       description: "Complete brand identity design, logos, print materials, and packaging",
-      icon: "🎨",
+      icon: <FaPalette className="w-8 h-8 text-[#00ff9d]" />,
       features: [
         "Brand Identity Design",
         "Logo Creation",
@@ -24,7 +26,7 @@ export default function Services() {
     {
       title: "Print Solutions",
       description: "Design and printing of brochures, catalogs, and business cards",
-      icon: "🖨️",
+      icon: <FaPrint className="w-8 h-8 text-[#00ff9d]" />,
       features: [
         "Brochure Design",
         "Catalog Production",
@@ -36,7 +38,7 @@ export default function Services() {
     {
       title: "Advertising",
       description: "Digital and traditional advertising campaign management",
-      icon: "📢",
+      icon: <FaAd className="w-8 h-8 text-[#00ff9d]" />,
       features: [
         "Campaign Strategy",
         "Digital Marketing",
@@ -48,7 +50,7 @@ export default function Services() {
     {
       title: "Social Media",
       description: "Professional social media management with creative content",
-      icon: "📱",
+      icon: <FaMobileAlt className="w-8 h-8 text-[#00ff9d]" />,
       features: [
         "Content Strategy",
         "Social Media Posts",
@@ -60,7 +62,7 @@ export default function Services() {
     {
       title: "Web Design",
       description: "Modern responsive website design and development",
-      icon: "💻",
+      icon: <FaLaptopCode className="w-8 h-8 text-[#00ff9d]" />,
       features: [
         "Responsive Design",
         "UI/UX Design",
@@ -72,7 +74,7 @@ export default function Services() {
     {
       title: "Mobile Apps",
       description: "Modern mobile applications for iOS and Android",
-      icon: "📱",
+      icon: <FaMobile className="w-8 h-8 text-[#00ff9d]" />,
       features: [
         "iOS Development",
         "Android Development",
@@ -83,17 +85,21 @@ export default function Services() {
     }
   ];
 
-  const renderService = (service: Service) => (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 p-4 transform hover:-translate-y-1 h-full">
-      <div className="flex items-center gap-3 mb-3">
-        <div className="text-3xl">{service.icon}</div>
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white">{service.title}</h3>
+  const renderService = (service: Service, index: number) => (
+    <div 
+      key={service.title} 
+      className="bg-black dark:bg-black rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 p-6 transform hover:-translate-y-2 h-full border border-[#00ff9d]/10"
+      style={{ animationDelay: `${index * 100}ms` }}
+    >
+      <div className="flex items-center gap-4 mb-4">
+        <div className="p-3 bg-[#00ff9d]/10 rounded-lg">{service.icon}</div>
+        <h3 className="text-xl font-bold text-white">{service.title}</h3>
       </div>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">{service.description}</p>
-      <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+      <p className="text-sm text-gray-400 mb-4 line-clamp-2">{service.description}</p>
+      <ul className="space-y-2 text-sm text-gray-400">
         {service.features.map((feature: string, index: number) => (
-          <li key={index} className="flex items-center text-xs">
-            <span className="mr-2 text-blue-500 text-xs">✓</span>
+          <li key={index} className="flex items-center">
+            <span className="mr-2 text-[#00ff9d] text-xs">✓</span>
             {feature}
           </li>
         ))}
@@ -102,18 +108,21 @@ export default function Services() {
   );
 
   return (
-    <div className="h-full flex items-center justify-center">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">My Services</h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Comprehensive design and development solutions to elevate your brand
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="flex-1 flex items-center justify-center h-full bg-gradient-to-br from-black to-gray-900 transition-all duration-500">
+      <div className="w-full max-w-6xl mx-auto px-4 py-8 md:py-12">
+        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-gradient-to-r from-[#00ff9d] to-[#00ff9d]/50 bg-clip-text text-transparent animate-fadeIn">
+          My Services
+          <div className="h-0.5 w-full bg-gradient-to-r from-[#00ff9d] to-[#00ff9d]/50 mt-1 transform scale-x-0 animate-expandWidth"></div>
+        </h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <div key={index}>
-              {renderService(service)}
+            <div 
+              key={service.title} 
+              className="transform transition-all duration-700 opacity-0 translate-y-8 animate-appear"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              {renderService(service, index)}
             </div>
           ))}
         </div>

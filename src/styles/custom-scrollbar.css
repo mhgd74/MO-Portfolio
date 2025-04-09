@@ -1,20 +1,46 @@
+/* تنسيق شريط التمرير المخصص */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(229, 231, 235, 0.2);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #3B82F6, #8B5CF6);
-  border-radius: 10px;
+  background: rgba(0, 255, 157, 0.3);
+  border-radius: 4px;
   transition: all 0.3s ease;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #2563EB, #7C3AED);
+  background: rgba(0, 255, 157, 0.5);
+}
+
+/* تنسيق شريط التمرير لمتصفح Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 157, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+/* تنسيق شريط التمرير لمتصفح Edge */
+.custom-scrollbar::-ms-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-ms-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-ms-scrollbar-thumb {
+  background: rgba(0, 255, 157, 0.3);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-ms-scrollbar-thumb:hover {
+  background: rgba(0, 255, 157, 0.5);
 }
 
 .dark .custom-scrollbar::-webkit-scrollbar-track {
