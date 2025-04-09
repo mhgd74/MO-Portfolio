@@ -51,6 +51,63 @@
   }
 }
 
+@keyframes pulse-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes ping-slow {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-5px) translateX(5px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(0);
+  }
+  75% {
+    transform: translateY(-5px) translateX(-5px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -90,6 +147,30 @@
 
 .animate-pulse {
   animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.animate-ping-slow {
+  animation: ping-slow 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.perspective-effect {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
 }
 
 .animate-shimmer {
@@ -165,4 +246,30 @@
 /* Dark mode transition */
 .dark-mode-transition {
   transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out;
-} 
+}
+
+/* Enhanced 3D effects */
+.hover-3d {
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.hover-3d:hover {
+  transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Gradient text animation */
+.gradient-text-animated {
+  background-size: 200% 200%;
+  background-image: linear-gradient(45deg, #00ff9d 0%, rgba(0, 255, 157, 0.5) 25%, #00ff9d 50%, rgba(0, 255, 157, 0.5) 75%, #00ff9d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

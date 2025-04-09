@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 import { FaGithub, FaBehance, FaExternalLinkAlt } from 'react-icons/fa';
@@ -118,72 +118,97 @@ export default function Projects() {
     }
   ];
 
-  const renderProject = (project: Project) => (
-    <div key={project.title} className="bg-black dark:bg-black rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out h-full flex flex-col transform hover:scale-[1.03] hover:translate-y-[-8px] hover:shadow-2xl border border-[#00ff9d]/20">
-      <div className="relative h-52 overflow-hidden">
+  const renderProject = (project: Project, isDesignProject: boolean = false) => (
+    <div key={project.title} className="card-enhanced h-full flex flex-col">
+      <div className="relative h-52 overflow-hidden rounded-t-lg">
         <Image
           src={project.image}
           alt={project.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 ease-in-out hover:scale-110"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+        
+        {/* Project type badge */}
+        <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm text-[#00ff9d] text-xs px-3 py-1.5 rounded-full border border-[#00ff9d]/30">
+          {isDesignProject ? 'Design' : 'Web Development'}
+        </div>
       </div>
-      <div className="p-6 flex-1 flex flex-col border-t-2 border-[#00ff9d]/20">
+      
+      <div className="p-6 flex-1 flex flex-col">
         <div className="flex-1">
           <h3 className="text-xl font-bold mb-3 text-white transition-colors duration-300 hover:text-[#00ff9d] relative inline-block group">
             {project.title}
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00ff9d] transition-all duration-300 group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#00ff9d] to-transparent transition-all duration-300 group-hover:w-full"></span>
           </h3>
-          <p className="text-gray-400 mb-4 line-clamp-2">{project.description}</p>
+          <p className="text-gray-300 mb-4 line-clamp-2">{project.description}</p>
+          
           {project.tags && (
             <div className="flex flex-wrap gap-2 mb-4">
               {project.tags.map((tag: string, tagIndex: number) => (
                 <span
                   key={`${tag}-${tagIndex}`}
-                  className="bg-[#00ff9d]/10 text-[#00ff9d] text-xs px-2 py-1 rounded-full transition-all duration-300 hover:bg-[#00ff9d]/20 hover:scale-105"
+                  className="bg-[#00ff9d]/10 text-[#00ff9d] text-xs px-3 py-1 rounded-full transition-all duration-300 hover:bg-[#00ff9d]/20 hover:scale-105 border border-[#00ff9d]/10"
                 >
                   {tag}
                 </span>
               ))}
             </div>
           )}
+          
           {project.features && (
             <div className="space-y-2">
-              <h4 className="font-semibold text-white">Features:</h4>
-              <ul className="list-disc list-inside text-sm text-gray-400 space-y-1">
+              <h4 className="font-semibold text-white flex items-center">
+                <svg className="w-4 h-4 mr-2 text-[#00ff9d]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                Features:
+              </h4>
+              <ul className="space-y-1.5">
                 {project.features.slice(0, 4).map((feature: string, featureIndex: number) => (
-                  <li key={`${feature}-${featureIndex}`} className="truncate transition-all duration-300 hover:text-[#00ff9d] hover:translate-x-1">{feature}</li>
+                  <li key={`${feature}-${featureIndex}`} className="text-sm text-gray-300 transition-all duration-300 hover:text-white hover:translate-x-1 flex items-start">
+                    <span className="text-[#00ff9d] mr-2">•</span>
+                    <span className="truncate">{feature}</span>
+                  </li>
                 ))}
               </ul>
             </div>
           )}
         </div>
-        <div className="flex gap-4 mt-6 pt-4 border-t border-gray-800">
+        
+        <div className="flex gap-4 mt-6 pt-4 border-t border-[#00ff9d]/10">
           <Link 
             href={project.demoUrl} 
             target="_blank" 
-            className="flex-1 bg-[#00ff9d] text-black text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-[#00ff9d]/80 hover:shadow-md hover:scale-[1.02]"
+            className="flex-1 bg-[#00ff9d] text-black text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-[#00ff9d]/80 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] flex items-center justify-center"
           >
-            View Project
+            <span>View Project</span>
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
           </Link>
-          {project.githubUrl && (
+          
+          {!isDesignProject && project.githubUrl && (
             <Link
               href={project.githubUrl} 
               target="_blank" 
-              className="flex-1 bg-gray-800 text-white text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-gray-700 hover:shadow-md hover:scale-[1.02]"
+              className="flex-1 bg-black/50 backdrop-blur-sm text-white text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-black/70 hover:shadow-md border border-[#00ff9d]/20 hover:border-[#00ff9d]/40 flex items-center justify-center"
             >
-              View Code
+              <FaGithub className="mr-2" />
+              <span>View Code</span>
             </Link>
           )}
-          {project.behanceUrl && (
+          
+          {isDesignProject && project.behanceUrl && (
             <Link
               href={project.behanceUrl} 
               target="_blank" 
-              className="flex-1 bg-gray-800 text-white text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-gray-700 hover:shadow-md hover:scale-[1.02]"
+              className="flex-1 bg-black/50 backdrop-blur-sm text-white text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-black/70 hover:shadow-md border border-[#00ff9d]/20 hover:border-[#00ff9d]/40 flex items-center justify-center"
             >
-              View on Behance
+              <FaBehance className="mr-2" />
+              <span>Behance</span>
             </Link>
           )}
         </div>
@@ -191,53 +216,120 @@ export default function Projects() {
     </div>
   );
 
+  const [activeCategory, setActiveCategory] = useState<'all' | 'design' | 'web'>('all');
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white custom-scrollbar">
-      <div className="flex-1 flex items-center justify-center h-full bg-gradient-to-br from-black to-gray-900 transition-all duration-500">
-        <div className="w-full max-w-6xl mx-auto px-2 py-4 md:py-0">
-          <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#00ff9d] to-[#00ff9d]/50 bg-clip-text text-transparent inline-block mb-6 animate-fadeIn">
-            My Projects
-            <div className="h-0.5 w-full bg-gradient-to-r from-[#00ff9d] to-[#00ff9d]/50 mt-1 transform scale-x-0 animate-expandWidth"></div>
-          </h1>
-          
-          {/* Graphic Design Projects */}
-          <div className="mb-8 animate-slideInUp">
-            <h2 className="text-lg md:text-xl font-semibold text-white mb-4 flex items-center group relative">
-              <svg className="w-5 h-5 mr-2 text-[#00ff9d] animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span className="relative">
-                Graphic Design Projects
-                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#00ff9d] transition-all duration-300 group-hover:w-full"></span>
-              </span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {designProjects.map((project, index) => (
-                <div key={project.title} className="transform transition-all duration-700 opacity-0 translate-y-8 animate-appear" style={{ animationDelay: `${index * 200}ms` }}>
-                  {renderProject(project)}
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white custom-scrollbar relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-20 left-10 w-64 h-64 bg-[#00ff9d]/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#00ff9d]/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl max-h-4xl bg-[#00ff9d]/2 rounded-full blur-3xl animate-ping-slow opacity-20"></div>
+      
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      
+      <div className="flex-1 flex items-center justify-center h-full transition-all duration-500 relative z-10">
+        <div className="container-enhanced py-16">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold inline-block animate-fadeIn mb-6 md:mb-0">
+              <span className="text-gradient-enhanced">My Projects</span>
+              <div className="h-0.5 w-32 bg-gradient-to-r from-[#00ff9d] to-transparent mt-2 transform scale-x-0 animate-expandWidth"></div>
+            </h1>
+            
+            <div className="flex space-x-3 mt-4 md:mt-0">
+              <button 
+                onClick={() => setActiveCategory('all')} 
+                className={`px-5 py-2.5 rounded-lg transition-all duration-300 ${activeCategory === 'all' 
+                  ? 'bg-[#00ff9d] text-black font-medium shadow-[0_0_15px_rgba(0,255,157,0.5)]' 
+                  : 'bg-black/30 backdrop-blur-sm text-gray-300 hover:bg-black/50 border border-[#00ff9d]/20 hover:border-[#00ff9d]/40'}`}
+              >
+                <div className="flex items-center">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                  </svg>
+                  All Projects
                 </div>
-              ))}
+              </button>
+              <button 
+                onClick={() => setActiveCategory('design')} 
+                className={`px-5 py-2.5 rounded-lg transition-all duration-300 ${activeCategory === 'design' 
+                  ? 'bg-[#00ff9d] text-black font-medium shadow-[0_0_15px_rgba(0,255,157,0.5)]' 
+                  : 'bg-black/30 backdrop-blur-sm text-gray-300 hover:bg-black/50 border border-[#00ff9d]/20 hover:border-[#00ff9d]/40'}`}
+              >
+                <div className="flex items-center">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Design
+                </div>
+              </button>
+              <button 
+                onClick={() => setActiveCategory('web')} 
+                className={`px-5 py-2.5 rounded-lg transition-all duration-300 ${activeCategory === 'web' 
+                  ? 'bg-[#00ff9d] text-black font-medium shadow-[0_0_15px_rgba(0,255,157,0.5)]' 
+                  : 'bg-black/30 backdrop-blur-sm text-gray-300 hover:bg-black/50 border border-[#00ff9d]/20 hover:border-[#00ff9d]/40'}`}
+              >
+                <div className="flex items-center">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                  Web Dev
+                </div>
+              </button>
             </div>
           </div>
           
-          {/* Web Development Projects */}
-          <div className="pb-6 animate-slideInUp" style={{ animationDelay: "200ms" }}>
-            <h2 className="text-lg md:text-xl font-semibold text-white mb-4 flex items-center group relative">
-              <svg className="w-5 h-5 mr-2 text-[#00ff9d] animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-              <span className="relative">
-                Web Development Projects
-                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#00ff9d] transition-all duration-300 group-hover:w-full"></span>
-              </span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {webProjects.map((project, index) => (
-                <div key={project.title} className="transform transition-all duration-700 opacity-0 translate-y-8 animate-appear" style={{ animationDelay: `${(index + designProjects.length) * 200}ms` }}>
-                  {renderProject(project)}
+          {/* Projects Grid with Filtering */}
+          <div className="animate-slideInUp">
+            {(activeCategory === 'all' || activeCategory === 'design') && (
+              <div className={`mb-12 ${activeCategory !== 'all' ? '' : ''}`}>
+                {activeCategory === 'all' && (
+                  <div className="flex items-center mb-8 group relative">
+                    <div className="w-10 h-10 rounded-lg bg-[#00ff9d]/10 flex items-center justify-center mr-4 border border-[#00ff9d]/20">
+                      <svg className="w-5 h-5 text-[#00ff9d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <h2 className="text-2xl font-semibold relative inline-block">
+                      <span className="text-gradient-enhanced">Graphic Design Projects</span>
+                      <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#00ff9d] to-transparent transition-all duration-300 group-hover:w-full"></span>
+                    </h2>
+                  </div>
+                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {designProjects.map((project, index) => (
+                    <div key={project.title} className="transform transition-all duration-700 opacity-0 translate-y-8 animate-appear hover-3d" style={{ animationDelay: `${index * 200}ms` }}>
+                      {renderProject(project, true)}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
+            
+            {(activeCategory === 'all' || activeCategory === 'web') && (
+              <div className="pb-6" style={{ animationDelay: "200ms" }}>
+                {activeCategory === 'all' && (
+                  <div className="flex items-center mb-8 group relative">
+                    <div className="w-10 h-10 rounded-lg bg-[#00ff9d]/10 flex items-center justify-center mr-4 border border-[#00ff9d]/20">
+                      <svg className="w-5 h-5 text-[#00ff9d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      </svg>
+                    </div>
+                    <h2 className="text-2xl font-semibold relative inline-block">
+                      <span className="text-gradient-enhanced">Web Development Projects</span>
+                      <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#00ff9d] to-transparent transition-all duration-300 group-hover:w-full"></span>
+                    </h2>
+                  </div>
+                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {webProjects.map((project, index) => (
+                    <div key={project.title} className="transform transition-all duration-700 opacity-0 translate-y-8 animate-appear hover-3d" style={{ animationDelay: `${activeCategory === 'all' ? (index + designProjects.length) * 200 : index * 200}ms` }}>
+                      {renderProject(project)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="600" fill="#1A1A1A"/>
-  <rect x="200" y="150" width="400" height="300" rx="20" fill="#00FF9D" fill-opacity="0.1"/>
-  <path d="M350 250L450 300L350 350V250Z" fill="#00FF9D"/>
-  <circle cx="400" cy="300" r="150" stroke="#00FF9D" stroke-width="4" stroke-dasharray="20 10"/>
-  <text x="400" y="450" text-anchor="middle" fill="#00FF9D" font-family="Arial" font-size="48">VidLoader</text>
-</svg> 
+  <!-- Background -->
+  <rect width="800" height="600" rx="20" fill="#121212"/>
+  
+  <!-- Gradient Background -->
+  <rect x="50" y="50" width="700" height="500" rx="15" fill="url(#gradient)" opacity="0.8"/>
+  
+  <!-- Play Button Icon -->
+  <circle cx="400" cy="270" r="100" fill="#00FF9D" fill-opacity="0.2" stroke="#00FF9D" stroke-width="4"/>
+  <path d="M450 270L375 320L375 220L450 270Z" fill="#00FF9D" stroke="#00FF9D" stroke-width="2"/>
+  
+  <!-- Video Frame -->
+  <rect x="150" y="150" width="500" height="300" rx="10" stroke="#00FF9D" stroke-width="4" stroke-dasharray="20" fill="none"/>
+  
+  <!-- Download Icon -->
+  <path d="M400 400L400 500M350 450L400 500L450 450" stroke="#00FF9D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="400" cy="400" r="20" fill="#00FF9D"/>
+  
+  <!-- Logo Text -->
+  <text x="400" y="100" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="bold" font-size="60">VidLoader</text>
+  <text x="400" y="530" text-anchor="middle" fill="#00FF9D" font-family="Arial, sans-serif" font-size="24">Fast Video Downloader</text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="700" cy="100" r="30" fill="none" stroke="#00FF9D" stroke-width="3"/>
+  <circle cx="100" cy="500" r="30" fill="none" stroke="#00FF9D" stroke-width="3"/>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000000"/>
+      <stop offset="1" stop-color="#333333"/>
+    </linearGradient>
+  </defs>
+</svg>
