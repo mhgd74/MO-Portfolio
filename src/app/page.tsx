@@ -13,7 +13,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex-1 flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-black">
+    <div className="flex-1 flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-black overflow-x-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-[#00ff9d]/5 rounded-full blur-3xl animate-pulse-slow"></div>
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#00ff9d]/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
@@ -60,11 +60,11 @@ export default function Home() {
           
           {/* Right Column - Creative Image Display */}
           <div className="relative transform transition-all duration-700 opacity-0 translate-y-8 animate-appear" style={{ animationDelay: '200ms' }}>
-            {/* Floating elements */}
-            <div className="absolute -top-10 -left-10 w-20 h-20 bg-[#00ff9d]/10 rounded-full blur-lg animate-float"></div>
-            <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-[#00ff9d]/15 rounded-full blur-lg animate-float" style={{ animationDelay: '1.5s' }}></div>
-            <div className="absolute top-1/2 -right-12 w-24 h-1 bg-[#00ff9d]/20 rounded-full blur-sm rotate-45"></div>
-            <div className="absolute top-1/3 -left-10 w-1 h-20 bg-[#00ff9d]/20 rounded-full blur-sm"></div>
+            {/* Floating elements - adjusted for mobile */}
+            <div className="absolute top-0 left-0 w-20 h-20 bg-[#00ff9d]/10 rounded-full blur-lg animate-float"></div>
+            <div className="absolute bottom-0 right-0 w-16 h-16 bg-[#00ff9d]/15 rounded-full blur-lg animate-float" style={{ animationDelay: '1.5s' }}></div>
+            <div className="absolute top-1/2 right-0 w-24 h-1 bg-[#00ff9d]/20 rounded-full blur-sm rotate-45"></div>
+            <div className="absolute top-1/3 left-0 w-1 h-20 bg-[#00ff9d]/20 rounded-full blur-sm"></div>
             
             {/* Main creative container */}
             <div className="relative h-[450px] w-full perspective-1000">
@@ -97,13 +97,13 @@ export default function Home() {
 
                 </div>
                 
-                {/* Floating tech icons */}
-                <div className="absolute -top-6 -right-6 w-12 h-12 bg-black/80 rounded-full flex items-center justify-center border border-[#00ff9d]/30 shadow-[0_0_10px_rgba(0,255,157,0.2)] transform group-hover:rotate-12 transition-all duration-500 z-20">
+                {/* Floating tech icons - adjusted for mobile */}
+                <div className="absolute top-0 right-0 w-12 h-12 bg-black/80 rounded-full flex items-center justify-center border border-[#00ff9d]/30 shadow-[0_0_10px_rgba(0,255,157,0.2)] transform group-hover:rotate-12 transition-all duration-500 z-20">
                   <svg className="w-6 h-6 text-[#00ff9d]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-black/80 rounded-full flex items-center justify-center border border-[#00ff9d]/30 shadow-[0_0_10px_rgba(0,255,157,0.2)] transform group-hover:-rotate-12 transition-all duration-500 z-20">
+                <div className="absolute bottom-0 left-0 w-12 h-12 bg-black/80 rounded-full flex items-center justify-center border border-[#00ff9d]/30 shadow-[0_0_10px_rgba(0,255,157,0.2)] transform group-hover:-rotate-12 transition-all duration-500 z-20">
                   <svg className="w-6 h-6 text-[#00ff9d]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                   </svg>

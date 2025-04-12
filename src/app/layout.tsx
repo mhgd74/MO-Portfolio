@@ -61,7 +61,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${inter.className} antialiased h-full flex flex-col bg-gradient-to-br from-gray-900 to-black text-white selection:bg-[#00ff9d]/20 selection:text-[#00ff9d] motion-safe:scroll-smooth`}>
+      <body className={`${inter.className} antialiased h-full flex flex-col bg-gradient-to-br from-gray-900 to-black text-white selection:bg-[#00ff9d]/20 selection:text-[#00ff9d] motion-safe:scroll-smooth overflow-x-hidden`}>
         {/* Background patterns and decorative elements */}
         <div className="fixed inset-0 bg-pattern-enhanced opacity-5 pointer-events-none"></div>
         <div className="fixed top-[20%] left-[10%] w-[30vw] h-[30vw] bg-glow-enhanced bg-[#00ff9d]/5 animate-pulse-slow"></div>
