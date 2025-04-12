@@ -178,14 +178,14 @@ export default function Projects() {
           )}
         </div>
         
-        <div className="flex gap-4 mt-6 pt-4 border-t border-[#00ff9d]/10">
+        <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-4 border-t border-[#00ff9d]/10">
           <Link 
             href={project.demoUrl} 
             target="_blank" 
             className="flex-1 bg-[#00ff9d] text-black text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-[#00ff9d]/80 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] flex items-center justify-center"
           >
-            <span>View Project</span>
-            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <span className="whitespace-nowrap">View Project</span>
+            <svg className="w-4 h-4 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
           </Link>
@@ -196,8 +196,8 @@ export default function Projects() {
               target="_blank" 
               className="flex-1 bg-black/50 backdrop-blur-sm text-white text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-black/70 hover:shadow-md border border-[#00ff9d]/20 hover:border-[#00ff9d]/40 flex items-center justify-center"
             >
-              <FaGithub className="mr-2" />
-              <span>View Code</span>
+              <FaGithub className="mr-2 flex-shrink-0" />
+              <span className="whitespace-nowrap">View Code</span>
             </Link>
           )}
           
@@ -207,8 +207,8 @@ export default function Projects() {
               target="_blank" 
               className="flex-1 bg-black/50 backdrop-blur-sm text-white text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-black/70 hover:shadow-md border border-[#00ff9d]/20 hover:border-[#00ff9d]/40 flex items-center justify-center"
             >
-              <FaBehance className="mr-2" />
-              <span>Behance</span>
+              <FaBehance className="mr-2 flex-shrink-0" />
+              <span className="whitespace-nowrap">Behance</span>
             </Link>
           )}
         </div>
@@ -236,14 +236,14 @@ export default function Projects() {
               <div className="h-0.5 w-32 bg-gradient-to-r from-[#00ff9d] to-transparent mt-2 transform scale-x-0 animate-expandWidth"></div>
             </h1>
             
-            <div className="flex space-x-3 mt-4 md:mt-0">
+            <div className="flex flex-wrap gap-3 mt-4 md:mt-0">
               <button 
                 onClick={() => setActiveCategory('all')} 
                 className={`px-5 py-2.5 rounded-lg transition-all duration-300 ${activeCategory === 'all' 
                   ? 'bg-[#00ff9d] text-black font-medium shadow-[0_0_15px_rgba(0,255,157,0.5)]' 
                   : 'bg-black/30 backdrop-blur-sm text-gray-300 hover:bg-black/50 border border-[#00ff9d]/20 hover:border-[#00ff9d]/40'}`}
               >
-                <div className="flex items-center">
+                <div className="flex items-center whitespace-nowrap">
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                   </svg>
@@ -256,7 +256,7 @@ export default function Projects() {
                   ? 'bg-[#00ff9d] text-black font-medium shadow-[0_0_15px_rgba(0,255,157,0.5)]' 
                   : 'bg-black/30 backdrop-blur-sm text-gray-300 hover:bg-black/50 border border-[#00ff9d]/20 hover:border-[#00ff9d]/40'}`}
               >
-                <div className="flex items-center">
+                <div className="flex items-center whitespace-nowrap">
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
@@ -269,7 +269,7 @@ export default function Projects() {
                   ? 'bg-[#00ff9d] text-black font-medium shadow-[0_0_15px_rgba(0,255,157,0.5)]' 
                   : 'bg-black/30 backdrop-blur-sm text-gray-300 hover:bg-black/50 border border-[#00ff9d]/20 hover:border-[#00ff9d]/40'}`}
               >
-                <div className="flex items-center">
+                <div className="flex items-center whitespace-nowrap">
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                   </svg>
