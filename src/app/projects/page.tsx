@@ -201,9 +201,9 @@ export default function Projects() {
             </Link>
           )}
           
-          {isDesignProject && project.behanceUrl && (
+          {isDesignProject && (
             <Link
-              href={project.behanceUrl} 
+              href="https://www.behance.net/MostafaHamdy" 
               target="_blank" 
               className="flex-1 bg-black/50 backdrop-blur-sm text-white text-center py-2.5 rounded-md transition-all duration-300 font-medium hover:bg-black/70 hover:shadow-md border border-[#00ff9d]/20 hover:border-[#00ff9d]/40 flex items-center justify-center"
             >
