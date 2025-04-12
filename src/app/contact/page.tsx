@@ -40,7 +40,7 @@ export default function Contact() {
               </p>
               
               <div className="space-y-6">
-                <div className="group p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20">
+                <a href="mailto:mh.gd@yandex.com" style={{textDecoration: 'none'}} className="block group hover:translate-y-[-5px] p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20 transition-all duration-300">
                   <div className="flex items-start gap-4">
                     <div className="bg-black/50 p-3 rounded-lg border border-[#00ff9d]/20 shadow-[0_0_10px_rgba(0,255,157,0.1)] group-hover:shadow-[0_0_15px_rgba(0,255,157,0.2)] transition-all duration-300">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#00ff9d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,33 +50,11 @@ export default function Contact() {
                     <div>
                       <h3 className="font-bold text-lg text-white mb-1 group-hover:text-[#00ff9d] transition-colors duration-300">Email</h3>
                       <p className="text-gray-300 group-hover:text-white transition-colors duration-300">mh.gd@yandex.com</p>
-                      <div className="mt-2 flex space-x-2">
-                        <button 
-                          onClick={() => {
-                            const text = 'mh.gd@yandex.com';
-                            navigator.clipboard.writeText(text)
-                              .then(() => alert('Email address copied to clipboard'))
-                              .catch(() => {
-                                // Fallback
-                                const el = document.createElement('textarea');
-                                el.value = text;
-                                document.body.appendChild(el);
-                                el.select();
-                                document.execCommand('copy');
-                                document.body.removeChild(el);
-                                alert('Email address copied to clipboard');
-                              });
-                          }}
-                          className="text-xs px-2 py-1 bg-[#00ff9d]/10 hover:bg-[#00ff9d]/20 text-[#00ff9d] rounded-md transition-colors duration-300"
-                        >
-                          Copy to Clipboard
-                        </button>
-                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
                 
-                <div className="group p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20">
+                <a href="tel:+2001115636063" style={{textDecoration: 'none'}} className="block group hover:translate-y-[-5px] p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20 transition-all duration-300">
                   <div className="flex items-start gap-4">
                     <div className="bg-black/50 p-3 rounded-lg border border-[#00ff9d]/20 shadow-[0_0_10px_rgba(0,255,157,0.1)] group-hover:shadow-[0_0_15px_rgba(0,255,157,0.2)] transition-all duration-300">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#00ff9d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -86,31 +64,9 @@ export default function Contact() {
                     <div>
                       <h3 className="font-bold text-lg text-white mb-1 group-hover:text-[#00ff9d] transition-colors duration-300">Phone</h3>
                       <p className="text-gray-300 group-hover:text-white transition-colors duration-300">(+20) 0111-56-36-06-3</p>
-                      <div className="mt-2 flex space-x-2">
-                        <button 
-                          onClick={() => {
-                            const text = '+2001115636063';
-                            navigator.clipboard.writeText(text)
-                              .then(() => alert('Phone number copied to clipboard'))
-                              .catch(() => {
-                                // Fallback
-                                const el = document.createElement('textarea');
-                                el.value = text;
-                                document.body.appendChild(el);
-                                el.select();
-                                document.execCommand('copy');
-                                document.body.removeChild(el);
-                                alert('Phone number copied to clipboard');
-                              });
-                          }}
-                          className="text-xs px-2 py-1 bg-[#00ff9d]/10 hover:bg-[#00ff9d]/20 text-[#00ff9d] rounded-md transition-colors duration-300"
-                        >
-                          Copy to Clipboard
-                        </button>
-                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
                 
                 <div className="mt-12">
                   <div className="flex items-center mb-6">
