@@ -40,7 +40,13 @@ export default function Contact() {
               </p>
               
               <div className="space-y-6">
-                <a href="mailto:mh.gd@yandex.com" style={{textDecoration: 'none'}} className="block group hover:translate-y-[-5px] p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20 transition-all duration-300">
+                <div 
+                  onClick={() => {
+                    const emailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=mh.gd@yandex.com';
+                    window.open(emailUrl, '_blank');
+                  }} 
+                  className="cursor-pointer block group hover:translate-y-[-5px] p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20 transition-all duration-300"
+                >
                   <div className="flex items-start gap-4">
                     <div className="bg-black/50 p-3 rounded-lg border border-[#00ff9d]/20 shadow-[0_0_10px_rgba(0,255,157,0.1)] group-hover:shadow-[0_0_15px_rgba(0,255,157,0.2)] transition-all duration-300">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#00ff9d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,21 +58,27 @@ export default function Contact() {
                       <p className="text-gray-300 group-hover:text-white transition-colors duration-300">mh.gd@yandex.com</p>
                     </div>
                   </div>
-                </a>
+                </div>
                 
-                <a href="tel:+2001115636063" style={{textDecoration: 'none'}} className="block group hover:translate-y-[-5px] p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20 transition-all duration-300">
+                <div 
+                  onClick={() => {
+                    const whatsappUrl = 'https://wa.me/2001115636063';
+                    window.open(whatsappUrl, '_blank');
+                  }} 
+                  className="cursor-pointer block group hover:translate-y-[-5px] p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20 transition-all duration-300"
+                >
                   <div className="flex items-start gap-4">
                     <div className="bg-black/50 p-3 rounded-lg border border-[#00ff9d]/20 shadow-[0_0_10px_rgba(0,255,157,0.1)] group-hover:shadow-[0_0_15px_rgba(0,255,157,0.2)] transition-all duration-300">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#00ff9d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg text-white mb-1 group-hover:text-[#00ff9d] transition-colors duration-300">Phone</h3>
+                      <h3 className="font-bold text-lg text-white mb-1 group-hover:text-[#00ff9d] transition-colors duration-300">WhatsApp</h3>
                       <p className="text-gray-300 group-hover:text-white transition-colors duration-300">(+20) 0111-56-36-06-3</p>
                     </div>
                   </div>
-                </a>
+                </div>
                 
                 <div className="mt-12">
                   <div className="flex items-center mb-6">
@@ -81,15 +93,15 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex gap-4 flex-wrap">
-                    <a 
-                      href="https://www.facebook.com/mostafa7mdy/" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm"
+                    <div 
+                      onClick={() => window.open('https://m.facebook.com/mostafa7mdy/', '_blank')}
+                      className="cursor-pointer bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm"
                       aria-label="Facebook"
+                      role="button"
+                      tabIndex={0}
                     >
                       <FaFacebook size={24} />
-                    </a>
+                    </div>
                     <a 
                       href="https://www.instagram.com/m0stafa_7amdy" 
                       target="_blank"
