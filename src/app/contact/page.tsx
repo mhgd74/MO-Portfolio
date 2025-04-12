@@ -41,7 +41,26 @@ export default function Contact() {
               
               <div className="space-y-6">
                 <div className="group cursor-pointer hover:translate-y-[-5px] transition-all duration-300 p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20" onClick={() => {
-                  window.location.href = 'mailto:mh.gd@yandex.com';
+                  try {
+                    // Try the modern approach first
+                    window.location.href = 'mailto:mh.gd@yandex.com';
+                    
+                    // Set a timeout to check if the action was intercepted
+                    setTimeout(() => {
+                      // Create a fallback text to copy
+                      const emailText = document.createElement('textarea');
+                      emailText.value = 'mh.gd@yandex.com';
+                      document.body.appendChild(emailText);
+                      emailText.select();
+                      document.execCommand('copy');
+                      document.body.removeChild(emailText);
+                      
+                      // Notify user that email was copied if needed
+                      console.log('Email copied to clipboard as fallback');
+                    }, 300);
+                  } catch (e) {
+                    console.error('Email action failed', e);
+                  }
                 }}>
                   <div className="flex items-start gap-4">
                     <div className="bg-black/50 p-3 rounded-lg border border-[#00ff9d]/20 shadow-[0_0_10px_rgba(0,255,157,0.1)] group-hover:shadow-[0_0_15px_rgba(0,255,157,0.2)] transition-all duration-300">
@@ -57,7 +76,26 @@ export default function Contact() {
                 </div>
                 
                 <div className="group cursor-pointer hover:translate-y-[-5px] transition-all duration-300 p-4 rounded-lg hover:bg-[#00ff9d]/5 border border-transparent hover:border-[#00ff9d]/20" onClick={() => {
-                  window.location.href = 'tel:+2001115636063';
+                  try {
+                    // Try the modern approach first
+                    window.location.href = 'tel:+2001115636063';
+                    
+                    // Set a timeout to check if the action was intercepted
+                    setTimeout(() => {
+                      // Create a fallback text to copy
+                      const phoneText = document.createElement('textarea');
+                      phoneText.value = '+2001115636063';
+                      document.body.appendChild(phoneText);
+                      phoneText.select();
+                      document.execCommand('copy');
+                      document.body.removeChild(phoneText);
+                      
+                      // Notify user that phone was copied if needed
+                      console.log('Phone number copied to clipboard as fallback');
+                    }, 300);
+                  } catch (e) {
+                    console.error('Phone action failed', e);
+                  }
                 }}>
                   <div className="flex items-start gap-4">
                     <div className="bg-black/50 p-3 rounded-lg border border-[#00ff9d]/20 shadow-[0_0_10px_rgba(0,255,157,0.1)] group-hover:shadow-[0_0_15px_rgba(0,255,157,0.2)] transition-all duration-300">
@@ -85,42 +123,46 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex gap-4 flex-wrap">
-                    <a 
-                      href="https://www.facebook.com/mostafa7mdy/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm"
+                    <div 
+                      onClick={() => { window.open('https://www.facebook.com/mostafa7mdy/', '_blank'); }}
+                      className="bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm cursor-pointer"
                       aria-label="Facebook"
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => { if (e.key === 'Enter') window.open('https://www.facebook.com/mostafa7mdy/', '_blank'); }}
                     >
                       <FaFacebook size={24} />
-                    </a>
-                    <a 
-                      href="https://www.instagram.com/m0stafa_7amdy" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm"
+                    </div>
+                    <div 
+                      onClick={() => { window.open('https://www.instagram.com/m0stafa_7amdy', '_blank'); }}
+                      className="bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm cursor-pointer"
                       aria-label="Instagram"
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => { if (e.key === 'Enter') window.open('https://www.instagram.com/m0stafa_7amdy', '_blank'); }}
                     >
                       <FaInstagram size={24} />
-                    </a>
-                    <a 
-                      href="https://github.com/mhgd74" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm"
+                    </div>
+                    <div 
+                      onClick={() => { window.open('https://github.com/mhgd74', '_blank'); }}
+                      className="bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm cursor-pointer"
                       aria-label="GitHub"
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => { if (e.key === 'Enter') window.open('https://github.com/mhgd74', '_blank'); }}
                     >
                       <FaGithub size={24} />
-                    </a>
-                    <a 
-                      href="https://www.behance.net/MostafaHamdy" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm"
+                    </div>
+                    <div 
+                      onClick={() => { window.open('https://www.behance.net/MostafaHamdy', '_blank'); }}
+                      className="bg-black/50 p-4 rounded-lg border border-[#00ff9d]/20 text-[#00ff9d] hover:scale-110 hover:shadow-[0_0_15px_rgba(0,255,157,0.3)] transition-all duration-300 backdrop-blur-sm cursor-pointer"
                       aria-label="Behance"
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => { if (e.key === 'Enter') window.open('https://www.behance.net/MostafaHamdy', '_blank'); }}
                     >
                       <SiBehance size={24} />
-                    </a>
+                    </div>
                   </div>
                 </div>
               </div>
