@@ -1,10 +1,55 @@
 'use client';
 
 import { FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
+import { useState } from 'react';
 import { SiBehance } from "react-icons/si";
 import '../styles/custom-scrollbar.css';
 
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate sending email
+    setTimeout(() => {
+      // Open mail client with prefilled data
+      const subject = `Contact from ${formData.name}`;
+      const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+      
+      window.open(`mailto:mh.gd@yandex.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+      
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 5000);
+    }, 1000);
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white custom-scrollbar relative overflow-hidden">
       {/* Background decorative elements */}
@@ -145,65 +190,94 @@ export default function Contact() {
                   <span className="text-gradient-enhanced">Send a Message</span>
                 </h2>
               </div>
-              <form className="space-y-6">
-                <div className="group">
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2 group-focus-within:text-[#00ff9d] transition-colors duration-300">
-                    Name
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="w-full bg-black/30 border border-[#00ff9d]/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff9d]/50 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
-                      required
-                    />
-                    <div className="absolute inset-0 border border-[#00ff9d]/0 rounded-lg group-focus-within:border-[#00ff9d]/30 pointer-events-none transition-all duration-300"></div>
-                  </div>
-                </div>
-                
-                <div className="group">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2 group-focus-within:text-[#00ff9d] transition-colors duration-300">
-                    Email
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full bg-black/30 border border-[#00ff9d]/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff9d]/50 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
-                      required
-                    />
-                    <div className="absolute inset-0 border border-[#00ff9d]/0 rounded-lg group-focus-within:border-[#00ff9d]/30 pointer-events-none transition-all duration-300"></div>
-                  </div>
-                </div>
-                
-                <div className="group">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2 group-focus-within:text-[#00ff9d] transition-colors duration-300">
-                    Message
-                  </label>
-                  <div className="relative">
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      className="w-full bg-black/30 border border-[#00ff9d]/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff9d]/50 focus:border-transparent transition-all duration-300 backdrop-blur-sm resize-none"
-                      required
-                    ></textarea>
-                    <div className="absolute inset-0 border border-[#00ff9d]/0 rounded-lg group-focus-within:border-[#00ff9d]/30 pointer-events-none transition-all duration-300"></div>
-                  </div>
-                </div>
-                
-                <button
-                  type="submit"
-                  className="button-enhanced button-enhanced-primary w-full flex items-center justify-center group"
-                >
-                  <span>Send Message</span>
-                  <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              {isSubmitted ? (
+                <div className="bg-[#00ff9d]/10 p-6 rounded-lg border border-[#00ff9d]/30 text-center animate-fadeIn">
+                  <svg className="w-16 h-16 text-[#00ff9d] mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                </button>
-              </form>
+                  <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+                  <p className="text-gray-300">Thank you for your message. I'll get back to you as soon as possible.</p>
+                </div>
+              ) : (
+                <form className="space-y-6" onSubmit={handleSubmit}>
+                  <div className="group">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2 group-focus-within:text-[#00ff9d] transition-colors duration-300">
+                      Name
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="w-full bg-black/30 border border-[#00ff9d]/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff9d]/50 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
+                        required
+                      />
+                      <div className="absolute inset-0 border border-[#00ff9d]/0 rounded-lg group-focus-within:border-[#00ff9d]/30 pointer-events-none transition-all duration-300"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="group">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2 group-focus-within:text-[#00ff9d] transition-colors duration-300">
+                      Email
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full bg-black/30 border border-[#00ff9d]/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff9d]/50 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
+                        required
+                      />
+                      <div className="absolute inset-0 border border-[#00ff9d]/0 rounded-lg group-focus-within:border-[#00ff9d]/30 pointer-events-none transition-all duration-300"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="group">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2 group-focus-within:text-[#00ff9d] transition-colors duration-300">
+                      Message
+                    </label>
+                    <div className="relative">
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={5}
+                        className="w-full bg-black/30 border border-[#00ff9d]/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff9d]/50 focus:border-transparent transition-all duration-300 backdrop-blur-sm resize-none"
+                        required
+                      ></textarea>
+                      <div className="absolute inset-0 border border-[#00ff9d]/0 rounded-lg group-focus-within:border-[#00ff9d]/30 pointer-events-none transition-all duration-300"></div>
+                    </div>
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    className="button-enhanced button-enhanced-primary w-full flex items-center justify-center group"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
