@@ -1,0 +1,53 @@
+.protectedImageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+.protectedImage {
+  pointer-events: none; /* Prevents some interactions */
+  -webkit-user-drag: none; /* Prevents Safari dragging */
+  -khtml-user-drag: none; /* Old browsers support */
+  -moz-user-drag: none; /* Firefox */
+  -o-user-drag: none; /* Opera */
+}
+
+.protectionMessage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0);
+  font-size: 0.1px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.showOverlay:hover .protectionMessage {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  font-weight: bold;
+  opacity: 1;
+}
+
+/* Additional protection by adding a transparent overlay */
+.protectedImageContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.01); /* Almost invisible overlay */
+  z-index: 5;
+}

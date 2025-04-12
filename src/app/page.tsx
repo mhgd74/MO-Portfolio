@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
+import ProtectedImage from "../components/ProtectedImage";
 import '@/styles/animations.css';
 
 export default function Home() {
@@ -84,13 +85,14 @@ export default function Home() {
                   
                   {/* Image */}
                   <div className="relative h-full w-full transform group-hover:scale-110 transition-all duration-700">
-                    <Image
+                    <ProtectedImage
                       src="/img/1.png"
                       alt="Portfolio Preview"
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover object-center"
                       priority
+                      showProtectionOverlay={true}
                     />
                   </div>
                   

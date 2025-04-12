@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import ProtectedImage from '../../components/ProtectedImage';
 import Link from "next/link";
 import { FaGithub, FaBehance, FaExternalLinkAlt } from 'react-icons/fa';
 import '@/styles/custom-scrollbar.css';
@@ -121,13 +122,14 @@ export default function Projects() {
   const renderProject = (project: Project, isDesignProject: boolean = false) => (
     <div key={project.title} className="card-enhanced h-full flex flex-col">
       <div className="relative h-52 overflow-hidden rounded-t-lg">
-        <Image
+        <ProtectedImage
           src={project.image}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 ease-in-out hover:scale-110"
           priority
+          showProtectionOverlay={true}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
         

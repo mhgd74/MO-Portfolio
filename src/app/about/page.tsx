@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
+import ProtectedImage from "../../components/ProtectedImage";
 import '@/styles/animations.css';
 import { 
   FaHtml5, 
@@ -64,13 +65,14 @@ export default function About() {
                 <div className="absolute inset-0 mx-auto bg-gradient-to-r from-[#00ff9d] to-[#00ff9d]/30 rounded-full w-[280px] h-[280px] blur-md transform transition-all duration-500 group-hover:blur-lg"></div>
                 <div className="relative bg-black/40 p-4 rounded-full shadow-lg border border-[#00ff9d]/20 backdrop-blur-sm overflow-hidden w-[280px] h-[280px] transform transition-all duration-500 group-hover:border-[#00ff9d]/40">
                   <div className="relative h-[260px] w-[260px] mx-auto overflow-hidden rounded-full">
-                    <Image
+                    <ProtectedImage
                       src="/img/2.png"
                       alt="Mostafa Hamdy"
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover rounded-full transform transition-all duration-700 group-hover:scale-110 group-hover:rotate-3"
                       priority
+                      showProtectionOverlay={true}
                     />
                   </div>
                   

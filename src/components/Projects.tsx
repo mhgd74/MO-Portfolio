@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ProtectedImage from './ProtectedImage';
 import '@/styles/animations.css';
 
 interface Project {
@@ -50,11 +51,12 @@ export default function Projects() {
           className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:translate-y-[-5px] flex flex-col h-full"
         >
           <div className="relative h-48 overflow-hidden">
-            <Image
+            <ProtectedImage
               src={project.image}
               alt={project.title}
               fill
               className="object-cover transition-transform duration-500 hover:scale-110"
+              showProtectionOverlay={true}
             />
           </div>
           <div className="p-6 flex-grow flex flex-col">
