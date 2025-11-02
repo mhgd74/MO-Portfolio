@@ -6,14 +6,14 @@
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
-  --primary-color: #00ff9d;
+  --primary-color: #ffff00;
   --secondary-color: #00b8ff;
-  --accent-color: #00ff9d;
+  --accent-color: #ffff00;
   --text-primary: #ffffff;
   --text-secondary: #a0a0a0;
   --card-bg: rgba(0, 0, 0, 0.8);
-  --hover-bg: rgba(0, 255, 157, 0.1);
-  --border-color: rgba(0, 255, 157, 0.2);
+  --hover-bg: rgba(255, 255, 0, 0.1);
+  --border-color: rgba(255, 255, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,7 +40,7 @@ body {
   }
 
   .nav-link::after {
-    @apply content-[''] absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00ff9d] to-[#00b8ff] transition-all duration-300;
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#ffff00] to-[#00b8ff] transition-all duration-300;
   }
 
   .nav-link:hover::after {

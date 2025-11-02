@@ -2,11 +2,11 @@
 
 /* Global Improvements */
 :root {
-  --primary: #00ff9d;
-  --primary-light: rgba(0, 255, 157, 0.5);
-  --primary-lighter: rgba(0, 255, 157, 0.2);
-  --primary-lightest: rgba(0, 255, 157, 0.1);
-  --primary-dark: rgba(0, 255, 157, 0.8);
+  --primary: #ffff00;
+  --primary-light: rgba(255, 255, 0, 0.5);
+  --primary-lighter: rgba(255, 255, 0, 0.2);
+  --primary-lightest: rgba(255, 255, 0, 0.1);
+  --primary-dark: rgba(255, 255, 0, 0.8);
   --black: #000;
   --dark-gray: #111;
   --mid-gray: #333;
