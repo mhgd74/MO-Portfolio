@@ -37,6 +37,56 @@ declare namespace React {
     children?: ReactNode;
     [key: string]: any;
   }
+
+  // Added: core React utility types used by libraries like react-icons
+  interface Attributes {
+    key?: Key;
+  }
+
+  interface ClassAttributes<T> extends Attributes {
+    ref?: Ref<T>;
+  }
+
+  type Ref<T> = ((instance: T | null) => void) | RefObject<T> | null;
+
+  interface RefObject<T> {
+    current: T | null;
+  }
+
+  type ComponentType<P = {}> = ((props: P) => ReactElement<any, any> | null) | (new (props: P) => Component<any, any>);
+
+  type ElementType = string | JSXElementConstructor<any>;
+
+  interface CSSProperties {
+    [key: string]: string | number | undefined;
+  }
+
+  // Added: reducer and effect types referenced by hooks
+  type Reducer<S, A> = (prevState: S, action: A) => S;
+  type ReducerState<R extends Reducer<any, any>> = R extends Reducer<infer S, any> ? S : never;
+  type ReducerAction<R extends Reducer<any, any>> = R extends Reducer<any, infer A> ? A : never;
+  type Dispatch<A> = (value: A) => void;
+  type EffectCallback = () => void | (() => void);
+
+  // Context types (to align with hook signatures)
+  interface Context<T> {
+    Provider: Provider<T>;
+    Consumer: Consumer<T>;
+    displayName?: string;
+  }
+  interface Provider<T> {
+    $$typeof: symbol;
+    props: {
+      value: T;
+      children?: ReactNode;
+    };
+  }
+  interface Consumer<T> {
+    $$typeof: symbol;
+    props: {
+      children: (value: T) => ReactNode;
+    };
+  }
 }
 
 declare module 'react' {
@@ -45,7 +95,7 @@ declare module 'react' {
 
   // React Hooks
   export function useState<T>(initialState: T | (() => T)): [T, (newState: T | ((prevState: T) => T)) => void];
-  export function useEffect(effect: () => void | (() => void), deps?: any[]): void;
+  export function useEffect(effect: React.EffectCallback, deps?: any[]): void;
   export function useContext<T>(context: React.Context<T>): T;
   export function useReducer<R extends React.Reducer<any, any>>(
     reducer: R,
@@ -64,26 +114,5 @@ declare module 'react' {
   export function useDebugValue<T>(value: T, format?: (value: T) => any): void;
 
   // React Context
-  interface Context<T> {
-    Provider: Provider<T>;
-    Consumer: Consumer<T>;
-    displayName?: string;
-  }
-  
-  interface Provider<T> {
-    $$typeof: symbol;
-    props: {
-      value: T;
-      children?: ReactNode;
-    };
-  }
-  
-  interface Consumer<T> {
-    $$typeof: symbol;
-    props: {
-      children: (value: T) => ReactNode;
-    };
-  }
-
-  export function createContext<T>(defaultValue: T): Context<T>;
+  export function createContext<T>(defaultValue: T): React.Context<T>;
 }
