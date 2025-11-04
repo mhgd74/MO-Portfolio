@@ -21,7 +21,8 @@ export default function About() {
   }, []);
 
   // قائمة بالمهارات التقنية مع الأيقونات المناسبة
-  const technicalSkills = [
+-  const technicalSkills = [
++  const technicalSkills: { name: string; Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; color: string }[] = [
     { name: 'HTML', Icon: FaHtml5, color: '#E44D26' },
     { name: 'CSS', Icon: FaCss3Alt, color: '#1572B6' },
     { name: 'JavaScript', Icon: FaJs, color: '#F7DF1E' },
